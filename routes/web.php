@@ -19,9 +19,21 @@ use \App\Http\Controllers\ProjectController;
 |
 */
 
+//Route::get('/', function () {
+//    return view('welcome');
+//})->name('dashboard');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard')->middleware('auth');
+
+//
 Route::get('/', function () {
-    return view('welcome');
-})->name('dashboard');
+    return view('layouts.master');
+
+})->name('dashboard')->middleware('auth');
+
+
 Route::resource('user', UserController::class);
 Route::resource('address', AddressController::class);
 Route::resource('post', PostController::class);

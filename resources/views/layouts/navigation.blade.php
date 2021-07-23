@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-blend-hard-light p-4">
+<nav class="navbar navbar-expand-lg navbar-light bg-blend-hard-light p-2">
     <a class="navbar-brand" href="#"> LARAVEL </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -12,12 +12,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ ('post') }}">Post</a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{ ('tag') }}">Tags</a>
-            </li>
-
-
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Dropdown
@@ -30,7 +24,16 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <a :href="route('logout')" class="nav-link"
+                                           onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </a>
+                </form>
+{{--                <a class="nav-link disabled" href="#">Disabled</a>--}}
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
