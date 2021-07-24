@@ -37,4 +37,23 @@ class Post extends Model
             ->withTimestamps()
             ->withPivot('status');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function comments(){
+
+        return $this->MorphMany(Comment::class,'commentable');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function comment(){
+
+        return $this->morphOne(Comment::class,'commentable');
+    }
+
+
+
 }

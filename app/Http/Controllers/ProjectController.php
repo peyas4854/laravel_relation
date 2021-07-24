@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,6 @@ class ProjectController extends Controller
 
         $project = Project::with('tasks')->find(1);
 
-//        dd($project->users);
 
         return $project;
 
@@ -31,7 +31,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

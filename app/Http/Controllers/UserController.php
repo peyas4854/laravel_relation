@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,11 +22,11 @@ class UserController extends Controller
     public function index()
     {
 
-        $users = User::with(['projects','task'])->get();
+        $users = User::with(['projects', 'task'])->get();
 
         return response()->json($users);
 
-        return view('user.index',compact('users'));
+        return view('user.index', compact('users'));
     }
 
     /**
@@ -36,7 +36,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+
+
     }
 
     /**

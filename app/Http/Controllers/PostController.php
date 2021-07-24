@@ -14,11 +14,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('user', 'tags')->get();
+        $posts = Post::with('comment')->findOrFail(1);
 
-//        return response()->json($posts);
+        return response()->json($posts);
 
-        return view('post', compact('posts'));
+//        return view('post', compact('posts'));
 
     }
 
@@ -30,14 +30,21 @@ class PostController extends Controller
     public function create()
     {
 
-        $post = Post::factory()->create();
+//        $post = Post::factory()->create();
+//
+//        $post->tags()->detach(
+//            [
+//                1 => ['status' => 'active'],
+//                2 => ['status' => 'inactive'],
+//            ]
+//        );
+        $post = Post::findOrFail(1);
 
-        $post->tags()->detach(
-            [
-                1 => ['status' => 'active'],
-                2 => ['status' => 'inactive'],
-            ]
-        );
+        $post->comments()->create([
+            'user_id' => $post->user_id,
+            'body' => 'sdfsdfdsfds',
+        ]);
+
 
         return $post;
 
