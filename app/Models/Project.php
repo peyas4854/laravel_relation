@@ -11,20 +11,27 @@ class Project extends Model
 
     protected $guarded = [];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+
     public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class);
     }
 
-    /**
+    /** project relation with task HasManyThrough , with pivot table
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
-    public function task()
+    public function tasks()
     {
-        return $this->hasManyThrough(Task::class,User::class,'project_id','user_id');
+        return $this->hasManyThrough(
+            Task::class,
+            ProjectUser::class,
+            'project_id',
+            'user_id',
+            'id',
+            'user_id'
+
+        );
     }
+
 
 }

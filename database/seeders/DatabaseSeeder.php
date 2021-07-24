@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AddressSeeder::class);
         $this->call(PostSeeder::class);
         $this->call(TaskSeeder::class);
+        $this->call(ProjectUserSeeder::class);
 
 
 

@@ -22,9 +22,11 @@ class UserController extends Controller
     public function index()
     {
 
-        $users = User::with(['address','post'])->get();
-//        return response()->json($users);
-        return view('dashboard', compact('users'));
+        $users = User::with(['projects','task'])->get();
+
+        return response()->json($users);
+
+        return view('user.index',compact('users'));
     }
 
     /**
